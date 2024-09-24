@@ -1,0 +1,4 @@
+git+https://github.com/KurimuzonAkuma/pyrogram
+aiohttp==3.9.3
+TgCrypto==1.2.5
+APScheduler==3.10.4
