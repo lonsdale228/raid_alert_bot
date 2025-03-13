@@ -35,8 +35,9 @@ ALERT_CHANNEL_ID = -1002070271876
 API_URL = "http://raid_alert_proxy:5000/data"
 # NEW_API_KEY = os.getenv("NEW_API_KEY")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-API_KEY = os.getenv("API_KEY")
+API_ID = os.getenv("API_ID")
 API_HASH = os.getenv("API_HASH")
+
 
 alert_sended = False
 
@@ -114,8 +115,8 @@ async def send_punya(bot):
 
 
 async def main():
-    global current_alert, API_HASH, API_KEY
-    app = pyrogram.Client(name="userBot2323", parse_mode=enums.ParseMode.HTML, api_id=API_KEY, api_hash=API_HASH)
+    global current_alert, API_HASH, API_ID
+    app = pyrogram.Client(name="userBot2323", parse_mode=enums.ParseMode.HTML, api_id=API_ID, api_hash=API_HASH)
     bot = pyrogram.Client(bot_token=BOT_TOKEN, name='botik')
 
     # KEY_WORDS = ["Одес", "Одещ", "Чорноморськ"]
