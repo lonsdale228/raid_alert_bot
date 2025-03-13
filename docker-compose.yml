@@ -4,7 +4,7 @@ services:
   alert_bot:
     container_name: alert_bot
     build:
-      dockerfile: Dockerfile
+      context: .
     stdin_open: true
     tty: true
     env_file:
