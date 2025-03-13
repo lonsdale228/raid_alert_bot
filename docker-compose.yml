@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  alert_bot:
+    container_name: alert_bot
+    build:
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      TZ: "Europe/Kyiv"

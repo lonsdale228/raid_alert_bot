@@ -1,4 +1,11 @@
-FROM python:3.11.8-alpine3.19
+FROM python:3.11.8-slim
+
+RUN apt-get update && apt-get install -y \
+    git \
+    gcc \
+    build-essential \
+    && apt-get clean
+
 WORKDIR /app
 COPY . /app
 
