@@ -117,7 +117,7 @@ async def send_punya(bot):
 async def main():
     global current_alert, API_HASH, API_ID
     app = pyrogram.Client(name="userBot2323", parse_mode=enums.ParseMode.HTML, api_id=API_ID, api_hash=API_HASH)
-    bot = pyrogram.Client(bot_token=BOT_TOKEN, name='botik')
+    bot = pyrogram.Client(bot_token=BOT_TOKEN, name='botik', api_id=API_ID, api_hash=API_HASH)
 
     # KEY_WORDS = ["Одес", "Одещ", "Чорноморськ"]
     CHATS_INFO = [
