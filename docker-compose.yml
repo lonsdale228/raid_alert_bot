@@ -9,6 +9,7 @@ services:
     tty: true
     env_file:
       - .env
+    restart: unless-stopped
     environment:
       TZ: "Europe/Kyiv"
     networks:
