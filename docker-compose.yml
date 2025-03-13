@@ -12,7 +12,7 @@ services:
     networks:
       - shared_network
     depends_on:
-      - raid_alert_proxy
+      - raid_api
 
 networks:
   shared_network:
