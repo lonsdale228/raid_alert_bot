@@ -11,8 +11,6 @@ services:
       TZ: "Europe/Kyiv"
     networks:
       - shared_network
-    depends_on:
-      - raid_api
 
 networks:
   shared_network:
