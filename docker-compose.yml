@@ -9,3 +9,11 @@ services:
       - .env
     environment:
       TZ: "Europe/Kyiv"
+    networks:
+      - shared_network
+    depends_on:
+      - raid_alert_proxy
+
+networks:
+  shared_network:
+    external: true

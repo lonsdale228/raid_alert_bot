@@ -32,25 +32,24 @@ punya_id = -1002128958498
 # TEST_CHAT_ID = -1001239857869
 ALERT_CHANNEL_ID = -1002070271876
 
-API_URL = "https://api.alerts.in.ua/v1/alerts/active.json"
-NEW_API_KEY = os.getenv("NEW_API_KEY")
+API_URL = "http://raid_alert_proxy:5000/data"
+# NEW_API_KEY = os.getenv("NEW_API_KEY")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+
 alert_sended = False
 
 current_alert = None
 
+
 def get_alert_status(js_list):
-    for reg in js_list['alerts']:
-        if "одес" in reg['location_title'].lower():
-            return True
-    return False
+    return 18 in js_list
 
 
 async def check_air_raid(bot):
     global alert_sended, cancel_sended, current_alert
     async with aiohttp.ClientSession() as session:
         try:
-            async with session.get(API_URL + f"?token={NEW_API_KEY}") as resp:
+            async with session.get(API_URL) as resp:
                 js = await resp.json()
                 time = datetime.datetime.now(tz).strftime("%H:%M:%S")
 
@@ -121,8 +120,6 @@ async def main():
         -1001223955273
     ]
 
-
-
     @app.on_message(filters.chat(CHATS_INFO) & filters.text & filters.regex(r'[Оо]дес[а-я]*|[Чч]орномор'))
     async def on_monitor_msg(client: Client, message: Message):
         chat = await client.get_chat(message.chat.id)
@@ -149,13 +146,15 @@ async def main():
 
     await compose(apps)
 
-    @app.on_message(filters.chat(CHATS_INFO) & filters.text & filters.regex(r'\b[Зз]агроза\b|\b[Бб]алістика\b|\b[Рр]акетн\w*\b'))
+    @app.on_message(
+        filters.chat(CHATS_INFO) & filters.text & filters.regex(r'\b[Зз]агроза\b|\b[Бб]алістика\b|\b[Рр]акетн\w*\b'))
     async def on_warning(client: Client, message: Message):
         if current_alert:
             await bot.send_message(ALERT_CHANNEL_ID,
-                                   text=text,
+                                   text=message.text,
                                    parse_mode=enums.ParseMode.HTML,
                                    disable_notification=True,
                                    disable_web_page_preview=True)
+
 
 asyncio.run(main())
