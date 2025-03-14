@@ -13,6 +13,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import logging
 import pytz
 from dotenv import load_dotenv
+
 load_dotenv()
 
 timezone = 'Europe/Kyiv'
@@ -46,8 +47,6 @@ alert_sended = False
 current_alert = None
 
 
-
-
 def get_alert_status(js_list):
     return 18 in js_list
 
@@ -79,6 +78,8 @@ async def check_air_raid(bot):
 
         except aiohttp.client_exceptions.ClientConnectorError:
             logger.exception("Cannot connect to Raid Alert api server!")
+        except Exception as e:
+            logger.exception(e)
 
 
 # @app.on_message(filters.chat(CHAT_ID), filters.text)
@@ -118,8 +119,10 @@ async def send_punya(bot):
 
 async def main():
     global current_alert, API_HASH, API_ID
-    app = pyrogram.Client(name="userBot2323", parse_mode=enums.ParseMode.HTML, api_id=API_ID, api_hash=API_HASH, workdir=pathlib.Path(__file__).parent)
-    bot = pyrogram.Client(bot_token=BOT_TOKEN, name='botik', api_id=API_ID, api_hash=API_HASH, workdir=pathlib.Path(__file__).parent)
+    app = pyrogram.Client(name="userBot2323", parse_mode=enums.ParseMode.HTML, api_id=API_ID, api_hash=API_HASH,
+                          workdir=pathlib.Path(__file__).parent)
+    bot = pyrogram.Client(bot_token=BOT_TOKEN, name='botik', api_id=API_ID, api_hash=API_HASH,
+                          workdir=pathlib.Path(__file__).parent)
 
     # KEY_WORDS = ["Одес", "Одещ", "Чорноморськ"]
     CHATS_INFO = [
@@ -153,15 +156,15 @@ async def main():
 
     await compose(apps)
 
-    @app.on_message(
-        filters.chat(CHATS_INFO) & filters.text & filters.regex(r'\b[Зз]агроза\b|\b[Бб]алістика\b|\b[Рр]акетн\w*\b'))
-    async def on_warning(client: Client, message: Message):
-        if current_alert:
-            await bot.send_message(ALERT_CHANNEL_ID,
-                                   text=message.text,
-                                   parse_mode=enums.ParseMode.HTML,
-                                   disable_notification=True,
-                                   disable_web_page_preview=True)
+    # @app.on_message(
+    #     filters.chat(CHATS_INFO) & filters.text & filters.regex(r'\b[Зз]агроза\b|\b[Бб]алістика\b|\b[Рр]акетн\w*\b'))
+    # async def on_warning(client: Client, message: Message):
+    #     if current_alert:
+    #         await bot.send_message(ALERT_CHANNEL_ID,
+    #                                text=message.text,
+    #                                parse_mode=enums.ParseMode.HTML,
+    #                                disable_notification=True,
+    #                                disable_web_page_preview=True)
 
 
 asyncio.run(main())
