@@ -12,6 +12,8 @@ import aiohttp
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import logging
 import pytz
+from dotenv import load_dotenv
+load_dotenv()
 
 timezone = 'Europe/Kyiv'
 
@@ -38,7 +40,6 @@ API_URL = "http://raid_alert_proxy:5000/data"
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 API_ID = os.getenv("API_ID")
 API_HASH = os.getenv("API_HASH")
-
 
 alert_sended = False
 
