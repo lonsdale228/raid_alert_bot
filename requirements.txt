@@ -1,7 +1,7 @@
-git+https://github.com/KurimuzonAkuma/pyrogram
 aiohttp==3.9.3
 TgCrypto==1.2.5
 APScheduler==3.10.4
 dotenv==0.9.9
 python-dotenv==1.0.1
 pytz==2025.1
+kurigram==2.2.14
