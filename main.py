@@ -152,7 +152,8 @@ async def main():
         app,
         bot
     ]
-    await app.send_message(chat_id=317465871, text="raid alert bot started!")
+    async with app:
+        await app.send_message(chat_id=317465871, text="raid alert bot started!")
     await compose(apps)
 
     # @app.on_message(
