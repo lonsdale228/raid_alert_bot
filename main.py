@@ -36,7 +36,7 @@ punya_id = -1002128958498
 # TEST_CHAT_ID = -1001239857869
 ALERT_CHANNEL_ID = -1002070271876
 
-API_URL = "http://raid_alert_proxy:5000/data"
+API_URL = "http://146.59.126.101:5000/data"
 # NEW_API_KEY = os.getenv("NEW_API_KEY")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 API_ID = os.getenv("API_ID")
@@ -148,12 +148,11 @@ async def main():
     scheduler.start()
 
     logger.info('Running successfully!')
-
     apps = [
         app,
         bot
     ]
-
+    await app.send_message(chat_id=317465871, text="raid alert bot started!")
     await compose(apps)
 
     # @app.on_message(
