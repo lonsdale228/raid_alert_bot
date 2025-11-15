@@ -16,7 +16,7 @@ async def run_scheduler():
     scheduler = AsyncIOScheduler(timezone=TIMEZONE)
     scheduler.add_job(check_air_raid, IntervalTrigger(seconds=2), args=(bot,))
     scheduler.add_job(send_punya, CronTrigger(hour=15), args=(bot,))
-    scheduler.add_job(get_bpla_info, IntervalTrigger(seconds=20, jitter=5))
+    scheduler.add_job(get_bpla_info, IntervalTrigger(seconds=20, jitter=5), args=(bot,))
     scheduler.start()
     await log.ainfo("Scheduler started!")
 
