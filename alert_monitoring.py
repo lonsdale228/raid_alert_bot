@@ -23,7 +23,7 @@ async def check_air_raid(bot):
                 js = await resp.json()
                 time = datetime.datetime.now(tz).strftime("%H:%M:%S")
 
-                alert = 18 in js
+                alert = 104 in js
 
                 if alert and not alert_sent:
                     text = f"❗️{time} — Повітряна тривога!"
