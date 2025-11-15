@@ -26,6 +26,9 @@ async def main():
 
     await log.ainfo("Started!")
 
+    async with app:
+        await app.send_message(chat_id='me', text="Raid alert bot started!")
+
     await compose(apps)
 
 
