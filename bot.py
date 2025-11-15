@@ -5,6 +5,7 @@ from apscheduler.triggers.cron import CronTrigger
 from apscheduler.triggers.interval import IntervalTrigger
 
 from alert_monitoring import check_air_raid
+from bpla_monitor import get_bpla_info
 from loader import app, bot, log, TIMEZONE
 from pyrogram import compose
 
@@ -15,6 +16,7 @@ async def run_scheduler():
     scheduler = AsyncIOScheduler(timezone=TIMEZONE)
     scheduler.add_job(check_air_raid, IntervalTrigger(seconds=2), args=(bot,))
     scheduler.add_job(send_punya, CronTrigger(hour=15), args=(bot,))
+    scheduler.add_job(get_bpla_info, IntervalTrigger(seconds=20, jitter=5))
     scheduler.start()
     await log.ainfo("Scheduler started!")
 
