@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  raid_alert_bot:
+    container_name: raid_alert_bot
+    build:
+      context: .
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - shared_network
+    volumes:
+      - .:/app
+
+networks:
+  shared_network:
+    external: true
