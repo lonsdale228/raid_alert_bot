@@ -13,7 +13,7 @@ CHATS_INFO = [
 regex_filter_city = r"оде[сщ]|чорномор|сов[іi]н[йь]|бурлач|для\s*всіх\s*регіонів"
 regex_critical = r"баліст|ка[бр]|кал[іi]б|г[іi]перзв|киндж|БпЛА|авіац\s*засоб\s*ураж"
 
-@Client.on_message(filters.chat(CHATS_INFO) & filters.text & filters.regex(regex_filter_city, re.IGNORECASE))
+@app.on_message(filters.chat(CHATS_INFO) & filters.text & filters.regex(regex_filter_city, re.IGNORECASE))
 async def on_monitor_msg(client: Client, message: Message):
     chat = await client.get_chat(message.chat.id)
     text = "⚠️ " + message.text.html + f' \n\n<a href="{message.link}">{chat.title}</a>'

@@ -5,7 +5,6 @@ from apscheduler.triggers.cron import CronTrigger
 from apscheduler.triggers.interval import IntervalTrigger
 
 from alert_monitoring import check_air_raid
-from bpla_monitor import get_bpla_info
 from loader import app, bot, log, TIMEZONE
 from pyrogram import compose
 
